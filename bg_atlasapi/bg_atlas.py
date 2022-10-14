@@ -1,3 +1,4 @@
+
 import tarfile
 from io import StringIO
 from pathlib import Path
@@ -77,20 +78,21 @@ class BrainGlobeAtlas(core.Atlas):
             setattr(self, dirname, dir_path)
 
         # Look for this atlas in local brainglobe folder:
-        if self.local_full_name is None:
-            if self.remote_version is None:
-                raise ValueError(f"{atlas_name} is not a valid atlas name!")
-
-            rprint(
-                f"[magenta2]Bgatlas_api: {self.atlas_name} not found locally. Downloading...[magenta2]"
-            )
-            self.download_extract_file()
+        # if self.local_full_name is None:
+        #     if self.remote_version is None:
+        #         raise ValueError(f"{atlas_name} is not a valid atlas name!")
+        #
+        #     rprint(
+        #         f"[magenta2]Bgatlas_api: {self.atlas_name} not found locally. Downloading...[magenta2]"
+        #     )
+        #     self.download_extract_file()
 
         # Instantiate after eventual download:
+        # super().__init__(self.brainglobe_dir / self.local_full_name)
         super().__init__(self.brainglobe_dir / self.local_full_name)
 
-        if check_latest:
-            self.check_latest_version()
+        # if check_latest:
+        #     self.check_latest_version()
 
     @property
     def local_version(self):
